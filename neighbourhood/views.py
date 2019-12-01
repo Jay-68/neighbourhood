@@ -26,6 +26,25 @@ def index(request):
 
 
 @login_required(login_url='/accounts/login')
+def search_results(request):
+
+    if 'business' in request.GET and request.GET["business"]:
+
+        profile = Profile.objects.get(user=request.user)
+        search_term = request.GET.get("business")
+        searched_businesses = Business.search_by_name(search_term)
+
+        message = f"{search_term}"
+
+        return render(request, 'search.html', {"message": message, "businesses": searched_businesss})
+
+    else:
+        message = "You haven't searched for any business"
+
+        return render(request, 'search.html', {"message": message})
+
+
+@login_required(login_url='/accounts/login')
 def business(request):
     profile = Profile.objects.get(user=request.user)
     businesses = Business.objects.filter(neighbourhood=profile.neighbourhood)
