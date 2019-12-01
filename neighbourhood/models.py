@@ -52,3 +52,46 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Business(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    description = models.TextField(null=True)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    def create_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    @classmethod
+    def find_business(cls, business_id):
+        business = cls.objects.get(id=business_id)
+        return business
+
+    def update_business(self, name):
+        self.name = name
+        self.save()
+
+    @classmethod
+    def search_by_name(cls, search_term):
+        business = cls.objects.filter(name__icontains=search_term)
+
+        return business
+
+    def __str__(self):
+        return self.name
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+    pub_date = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.title
