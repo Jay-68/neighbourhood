@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+{{block.super}}
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">{{post.title}}</h1>
+      <p class="card-text">{{post.content}}</p>
+      <p class="card-text">Posted by: <a href="{% url 'profile' post.user %}">{{post.user}}</a> on
+        <strong>{{post.pub_date|date}}</strong></p>
+    </div>
+  </div>
+</div>
+{% endblock content %}
