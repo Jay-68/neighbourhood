@@ -48,8 +48,9 @@ def search_results(request):
 def business(request):
     profile = Profile.objects.get(user=request.user)
     businesses = Business.objects.filter(neighbourhood=profile.neighbourhood)
+    neighbourhood = profile.neighbourhood
 
-    return render(request, 'business.html', {"businesses": businesses})
+    return render(request, 'business.html', {"businesses": businesses,'neighbourhood':neighbourhood})
 
 
 @login_required(login_url='/accounts/login')
@@ -114,8 +115,9 @@ def profile(request, username):
     user = User.objects.get(username=username)
     profile = Profile.objects.get(user=user)
     businesses = Business.objects.filter(user=profile)
+    neighbourhood = Profile.objects.get(neighbourhood=neighbourhood)
 
-    return render(request, 'profile.html', {"profile": profile, "businesses": businesses})
+    return render(request, 'profile.html', {"profile": profile, "businesses": businesses,'neighbourhood':neighbourhood})
 
 
 @login_required(login_url='/accounts/login')
