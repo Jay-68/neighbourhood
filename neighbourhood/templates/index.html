@@ -6,8 +6,8 @@
 <div class="container">
   <div class="text-center">
     <h1>Welcome to {{ neighbourhood }}</h1>
+    <a href="{% url 'new_post' %}" class="btn btn-primary">Post something</a>
   </div>
-
   {% if posts %}
 
   <div class="row">
@@ -32,10 +32,8 @@
     {% else %}
 
     <h2 class="text-center">Whoops. There are no posts. Check back another time.</h2>
-
     {% endif %}
 
-    <a href="{% url 'new_post' %}" class="btn btn-primary">Post something</a>
   </div>
 
   {% endblock content %}
