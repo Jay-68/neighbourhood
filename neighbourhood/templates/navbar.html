@@ -1,8 +1,8 @@
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
 
   <!-- Navbar brand -->
-  <a class="navbar-brand font-weight-bold" href="{% url 'index' %}">The Hood</a>
+  <a class="navbar-brand font-weight-bold" href="{% url 'index' %}">The Hood - {{ neighbourhood }}</a>
 
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
@@ -19,20 +19,23 @@
       <li class="nav-item active">
       <li class="nav-item"><a href="{% url 'business' %}" class="nav-link">Businesses</a></li>
       <li class="nav-item"><a href="{% url 'profile' user %}" class="nav-link"><i class="fas fa-user"></i>Profile</a></li>
-      <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
       </li>
     </ul>
 
     <!-- Links -->
 
     <!-- Search form -->
-    <form class="form-inline" action="{% url 'search' %}">
+    <form class="form-inline mr-auto" action="{% url 'search' %}">
       <div class="md-form my-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search for a business" aria-label="Search"
+        <input class="form-control mr-sm-2" type="text" placeholder="Search..." aria-label="Search"
           name="project">
       </div>
     </form>
     <!-- End of search form -->
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+    </ul>
 
     {% else %}
 
