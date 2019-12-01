@@ -5,7 +5,7 @@
 
 <div class="container pt-3">
   <div class="text-center mt-5">
-    <h3>{{ neighbourhood }}</h3>
+    <h3 class="font-weight-bold">Welcome to your new home - {{ neighbourhood }}</h3>
     <a href="{% url 'new_post' %}" class="btn btn-elegant btn-sm mb-5">Create New Post</a>
   </div>
   {% if posts %}
@@ -31,7 +31,7 @@
 
     {% else %}
 
-    <h2 class="text-center">Whoops. There are no posts. Check back another time.</h2>
+    <h2 class="text-center lead">There are no posts at this time. Check another time of be the first to post.</h2>
     {% endif %}
 
   </div>
