@@ -51,3 +51,40 @@ def new_business(request):
         form = BusinessForm()
 
     return render(request, 'new_business.html', {'form': form})
+
+
+@login_required(login_url='/accounts/login')
+def post(request, post_id):
+    post = Post.objects.get(id=post_id)
+
+    try:
+        post = Post.objects.get(id=post_id)
+
+    except Post.DoesNotExist:
+        raise Http404("Sorry. The post does not exist.")
+
+    return render(request, 'post.html', {"post": post})
+
+
+@login_required(login_url='/accounts/login')
+def new_post(request):
+    profile = Profile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+
+        form = PostForm(request.POST)
+
+        if form.is_valid():
+
+            post = form.save(commit=False)
+            post.user = request.user
+            post.neighbourhood = profile.neighbourhood
+            post.save()
+
+        return redirect('index')
+
+    else:
+
+        form = PostForm()
+
+    return render(request, 'new_post.html', {"profile": profile, "form": form})
