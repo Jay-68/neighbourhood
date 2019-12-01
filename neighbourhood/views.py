@@ -23,3 +23,31 @@ def index(request):
     neighbourhood = profile.neighbourhood
 
     return render(request, 'index.html', {"posts": posts, "profile": profile, "businesses": businesses, "neighbourhood": neighbourhood})
+
+
+@login_required(login_url='/accounts/login')
+def business(request):
+    profile = Profile.objects.get(user=request.user)
+    businesses = Business.objects.filter(neighbourhood=profile.neighbourhood)
+
+    return render(request, 'business.html', {"businesses": businesses})
+
+
+@login_required(login_url='/accounts/login')
+def new_business(request):
+    profile = Profile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.user = profile
+            business.neighbourhood = profile.neighbourhood
+            business.save()
+
+        return redirect('business')
+
+    else:
+        form = BusinessForm()
+
+    return render(request, 'new_business.html', {'form': form})
