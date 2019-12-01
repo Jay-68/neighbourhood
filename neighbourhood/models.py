@@ -15,7 +15,7 @@ class Location(models.Model):
 
 
 class Neighbourhood(models.Model):
-    name = models.CharField(max_length=90)
+    name = models.CharField(max_length=120)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     occupants = models.IntegerField(null=True, default=0)
 
