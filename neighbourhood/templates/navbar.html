@@ -1,5 +1,5 @@
 <!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light">
 
   <!-- Navbar brand -->
   <a class="navbar-brand font-weight-bold" href="{% url 'index' %}">The Hood</a>
@@ -18,8 +18,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
       <li class="nav-item"><a href="{% url 'business' %}" class="nav-link">Businesses</a></li>
-      <li class="nav-item"><a href="{% url 'new_post' %}" class="nav-link">Post Something</a></li>
-      <li class="nav-item"><a href="{% url 'profile' user %}" class="nav-link">Profile</a></li>
+      <li class="nav-item"><a href="{% url 'profile' user %}" class="nav-link"><i class="fas fa-user"></i>Profile</a></li>
       <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
       </li>
     </ul>

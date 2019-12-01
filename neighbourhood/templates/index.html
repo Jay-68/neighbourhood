@@ -4,9 +4,9 @@
 {% block content %}
 
 <div class="container">
-  <div class="text-center">
+  <div class="text-center mt-2">
     <h1>Welcome to {{ neighbourhood }}</h1>
-    <a href="{% url 'new_post' %}" class="btn btn-primary">Post something</a>
+    <a href="{% url 'new_post' %}" class="btn btn-elegant btn-sm mb-5">Post something</a>
   </div>
   {% if posts %}
 
@@ -14,15 +14,15 @@
     {% for post in posts %}
 
     <div class="col-md-6">
-      <div class="card">
+      <div class="card elegant-color">
         <div class="card-body">
-          <div class="card-title">
+          <div class="card-title cyan-text">
             <h2>{{ post.title }}</h2>
           </div>
-          <div class="card-text">
+          <div class="card-text white-text">
             <p>{{ post.content }}</p>
           </div>
-          <a href="{% url 'post' post.id %}" class="btn btn-secondary"> More </a>
+          <a href="{% url 'post' post.id %}" class="btn btn-dark-green btn-sm"> View Post </a>
         </div>
       </div>
     </div>
