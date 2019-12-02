@@ -36,7 +36,7 @@ def search_results(request):
 
         message = f"{search_term}"
 
-        return render(request, 'search.html', {"message": message, "businesses": searched_businesss})
+        return render(request, 'search.html', {"message": message, "businesses": searched_businesses})
 
     else:
         message = "You haven't searched for any business"
